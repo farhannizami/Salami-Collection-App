@@ -24,19 +24,18 @@ public class historypanel extends javax.swing.JPanel {
     /**
      * Creates new form historypanel
      */
-    
-    String st_sender,st_receiver, st_email,st_amount;
-    
+    String st_sender, st_receiver, st_email, st_amount;
+
     public historypanel() {
         initComponents();
         load();
     }
-    
-    public historypanel(String sen,String rec, String ema,String amo) {
-        st_sender=sen;
-        st_receiver=rec;
-        st_email=ema;
-        st_amount=amo;
+
+    public historypanel(String sen, String rec, String ema, String amo) {
+        st_sender = sen;
+        st_receiver = rec;
+        st_email = ema;
+        st_amount = amo;
         initComponents();
         load();
     }
@@ -71,7 +70,7 @@ public class historypanel extends javax.swing.JPanel {
 
                 totalpanel tp = new totalpanel();
                 tp.setTaka(Integer.toString(totsum) + " Taka");
-                int space = 4-Integer.toString(totsum).length();
+                int space = 4 - Integer.toString(totsum).length();
                 String sp = "";
                 for (int j = 0; j < space; j++) {
                     sp += " ";
@@ -81,7 +80,7 @@ public class historypanel extends javax.swing.JPanel {
                 scpane.revalidate();
                 scpane.repaint();
 
-                int n = val.size()/2;
+                int n = val.size() / 2;
                 scpane.setPreferredSize(new Dimension(scpane.getWidth(), 40 + n * 40));
                 scpane.revalidate();
                 scpane.repaint();
@@ -106,7 +105,22 @@ public class historypanel extends javax.swing.JPanel {
             }
 
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(historypanel.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(historypanel.class.getName()).log(Level.SEVERE, null, ex);
+            int totsum = 0;
+            totalpanel tp = new totalpanel();
+            tp.setTaka(Integer.toString(totsum) + " Taka");
+            int space = 4 - Integer.toString(totsum).length();
+            String sp = "";
+            for (int j = 0; j < space; j++) {
+                sp += " ";
+            }
+            tp.setTaka(sp + tp.gettaka());
+            scpane.add(tp);
+            scpane.revalidate();
+            scpane.repaint();
+            scpane.setPreferredSize(new Dimension(scpane.getWidth(), 40));
+            scpane.revalidate();
+            scpane.repaint();
         }
 
     }
@@ -253,7 +267,7 @@ public class historypanel extends javax.swing.JPanel {
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
         setVisible(false);
-        logoutpanel lgp = new logoutpanel(st_sender,st_receiver,st_email,st_amount);
+        logoutpanel lgp = new logoutpanel(st_sender, st_receiver, st_email, st_amount);
         getParent().add(lgp);
         lgp.setVisible(true);
         JFrame frame = new JFrame();
@@ -271,7 +285,7 @@ public class historypanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         setVisible(false);
-        detailspanel dp = new detailspanel(st_sender,st_receiver,st_email,st_amount);
+        detailspanel dp = new detailspanel(st_sender, st_receiver, st_email, st_amount);
         getParent().add(dp);
         dp.setVisible(true);
     }//GEN-LAST:event_salamiMouseClicked
