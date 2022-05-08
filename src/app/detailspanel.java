@@ -21,22 +21,21 @@ public class detailspanel extends javax.swing.JPanel {
     /**
      * Creates new form detailspanel
      */
-    
-    String st_sender,st_receiver, st_email,st_amount;
-    
+    String st_sender, st_receiver, st_email, st_amount;
+
     public detailspanel() {
-        st_sender="";
-        st_receiver="";
-        st_email="";
-        st_amount="";
+        st_sender = "";
+        st_receiver = "";
+        st_email = "";
+        st_amount = "";
         initComponents();
     }
-    public detailspanel(String sen,String rec, String ema,String amo)
-    {
-        st_sender=sen;
-        st_receiver=rec;
-        st_email=ema;
-        st_amount=amo;
+
+    public detailspanel(String sen, String rec, String ema, String amo) {
+        st_sender = sen;
+        st_receiver = rec;
+        st_email = ema;
+        st_amount = amo;
         initComponents();
         sendname.setText(sen);
         receivename.setText(rec);
@@ -202,14 +201,14 @@ public class detailspanel extends javax.swing.JPanel {
 
     private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         // TODO add your handling code here:
-        
-        st_sender= sendname.getText();
-        st_receiver= receiveemail.getText();
-        st_email= receiveemail.getText();
-        st_amount= amount.getText();
-        
+
+        st_sender = sendname.getText();
+        st_receiver = receiveemail.getText();
+        st_email = receiveemail.getText();
+        st_amount = amount.getText();
+
         setVisible(false);
-        logoutpanel lgp = new logoutpanel(st_sender,st_receiver,st_email,st_amount);
+        logoutpanel lgp = new logoutpanel(st_sender, st_receiver, st_email, st_amount);
         getParent().add(lgp);
         lgp.setVisible(true);
         JFrame frame = new JFrame();
@@ -225,14 +224,14 @@ public class detailspanel extends javax.swing.JPanel {
 
     private void historyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_historyMouseClicked
         // TODO add your handling code here:
-        st_sender= sendname.getText();
-        st_receiver= receiveemail.getText();
-        st_email= receiveemail.getText();
-        st_amount= amount.getText();
-        System.out.println(st_sender+ "   ssc");
+        st_sender = sendname.getText();
+        st_receiver = receiveemail.getText();
+        st_email = receiveemail.getText();
+        st_amount = amount.getText();
+        System.out.println(st_sender + "   ssc");
 
         setVisible(false);
-        historypanel hp = new historypanel(st_sender,st_receiver,st_email,st_amount);
+        historypanel hp = new historypanel(st_sender, st_receiver, st_email, st_amount);
         getParent().add(hp);
         hp.setVisible(true);
     }//GEN-LAST:event_historyMouseClicked
@@ -247,55 +246,58 @@ public class detailspanel extends javax.swing.JPanel {
         }
         String receivermail = receiveemail.getText();
         String amountString = amount.getText();
-        File f = new File("salami.csv");
+        System.out.println(sender+ " "+ amountString + "   f");
+        if (!sender.equals("") && !amountString.equals("")) {
+            File f = new File("salami.csv");
 
-        try {
-            FileWriter fw = new FileWriter(f, true);
-            fw.write(sender + "," + receiver + "," + receivermail + "," + amountString + "\n");
-            fw.flush();
-            fw.close();
-            
-            File fl = new File("D:\\MIST\\Salami Collection Receipt\\"+sender+".txt");
-            
-            FileWriter fq = new FileWriter(fl,true);
+            try {
+                FileWriter fw = new FileWriter(f, true);
+                fw.write(sender + "," + receiver + "," + receivermail + "," + amountString + "\n");
+                fw.flush();
+                fw.close();
 
-            String receipt = "\t\tSalami Collection Receipt\n"
-                    + "\tঈদ আনন্দ ঘরে ঘরে, সালামি দিন দুহাত ভরে\n"
-                    + "\n"
-                    + "\n"
-                    + "Date: 8 May, 2022\n"
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "\tReceived from: "+ sender+ "\n"
-                    + "\tAmount Received: "+amountString+" Taka\n"
-                    + "\tReceived By: "+receiver+"\n"
-                    + "\tPurpose: Eid Salami\n"
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "\n"
-                    + "Note: Salami received through the app is not refundable.\n"
-                    + "\n"
-                    + "";
-                
-            fq.write(receipt);
-            fq.flush();
-            fq.close();
-            
-            JFrame msg = new JFrame();
-            JOptionPane.showMessageDialog(msg,"Imformation inserted successfully");
-            
-            sendname.setText("");
-            receivename.setText("");
-            receiveemail.setText("");
-            amount.setText("");
-            
-        } catch (IOException ex) {
-            Logger.getLogger(detailspanel.class.getName()).log(Level.SEVERE, null, ex);
+                File fl = new File("D:\\MIST\\Salami Collection Receipt\\" + sender + ".txt");
+
+                FileWriter fq = new FileWriter(fl, true);
+
+                String receipt = "\t\tSalami Collection Receipt\n"
+                        + "\tঈদ আনন্দ ঘরে ঘরে, সালামি দিন দুহাত ভরে\n"
+                        + "\n"
+                        + "\n"
+                        + "Date: 8 May, 2022\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\tReceived from: " + sender + "\n"
+                        + "\tAmount Received: " + amountString + " Taka\n"
+                        + "\tReceived By: " + receiver + "\n"
+                        + "\tPurpose: Eid Salami\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "Note: Salami received through the app is not refundable.\n"
+                        + "\n"
+                        + "";
+
+                fq.write(receipt);
+                fq.flush();
+                fq.close();
+
+                JFrame msg = new JFrame();
+                JOptionPane.showMessageDialog(msg, "Imformation inserted successfully");
+
+                sendname.setText("");
+                receivename.setText("");
+                receiveemail.setText("");
+                amount.setText("");
+
+            } catch (IOException ex) {
+                Logger.getLogger(detailspanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_generateActionPerformed
 

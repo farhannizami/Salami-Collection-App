@@ -64,13 +64,13 @@ public class historypanel extends javax.swing.JPanel {
                     }
                     if (i % 4 == 3) {
                         val.add(processeddata[i]);
-                        totsum += Integer.parseInt(processeddata[i]);
+                        totsum += Float.parseFloat(processeddata[i]);
                     }
                 }
 
                 totalpanel tp = new totalpanel();
-                tp.setTaka(Integer.toString(totsum) + " Taka");
-                int space = 4 - Integer.toString(totsum).length();
+                tp.setTaka(Float.toString(totsum) + " Taka");
+                int space = 4 - Float.toString(totsum).length();
                 String sp = "";
                 for (int j = 0; j < space; j++) {
                     sp += " ";
